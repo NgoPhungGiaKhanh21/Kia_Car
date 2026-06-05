@@ -1,0 +1,533 @@
+/* ============================================
+   Register Driver Page – registerDriver.css
+   ============================================ */
+
+/* ─── Wrapper ─── */
+.rd-wrapper {
+  min-height: 100vh;
+  background: #0a0a0f;
+  font-family: "Montserrat", "Inter", sans-serif;
+  color: #e8e8e8;
+}
+
+/* ─── HERO ─── */
+.rd-hero {
+  position: relative;
+  height: 340px;
+  background:
+    linear-gradient(135deg, #0d0d1a 0%, #1a0505 50%, #0d1a0d 100%),
+    url("https://res.cloudinary.com/dvnbvmoe0/image/upload/v1780209436/new-carnival-hev-astra-blue-1-1_abr7th.png")
+    center / cover no-repeat;
+  background-blend-mode: overlay;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.rd-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 120%, rgba(205, 9, 9, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.rd-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,15,0.3) 0%, rgba(10,10,15,0.85) 100%);
+}
+
+.rd-hero__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.rd-hero__sub {
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #cd0909;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.rd-hero__title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 16px;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.rd-hero__desc {
+  font-size: 15px;
+  color: rgba(255,255,255,0.65);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ─── MAIN LAYOUT ─── */
+.rd-main {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ─── LEFT – Preview ─── */
+.rd-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: sticky;
+  top: 24px;
+}
+
+.rd-preview__card {
+  background: linear-gradient(145deg, #16161f, #1e1e2a);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  animation: fadeSlideUp 0.4s ease;
+}
+
+.rd-preview__img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  background: linear-gradient(180deg, #1a1a26 0%, #111118 100%);
+  padding: 24px;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.rd-preview__card:hover .rd-preview__img {
+  transform: scale(1.04);
+}
+
+.rd-preview__info {
+  padding: 20px 24px 24px;
+}
+
+.rd-preview__name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  margin: 8px 0 10px;
+  line-height: 1.35;
+}
+
+.rd-preview__color {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  margin: 0 0 10px;
+}
+
+.rd-preview__color svg {
+  color: #cd0909;
+  flex-shrink: 0;
+}
+
+.rd-preview__price {
+  font-size: 22px;
+  font-weight: 800;
+  color: #cd0909;
+  margin: 0;
+}
+
+/* Badge type */
+.rd-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.rd-badge--hybrid { background: rgba(29,230,90,0.15); color: #1de65a; border: 1px solid rgba(29,230,90,0.3); }
+.rd-badge--suv    { background: rgba(0,132,255,0.15); color: #0099ff; border: 1px solid rgba(0,132,255,0.3); }
+.rd-badge--sedan  { background: rgba(255,165,0,0.15); color: #ffa500; border: 1px solid rgba(255,165,0,0.3); }
+.rd-badge--hatchback { background: rgba(180,0,255,0.15); color: #cc66ff; border: 1px solid rgba(180,0,255,0.3); }
+
+/* Skeleton */
+.rd-preview__skeleton {
+  border-radius: 20px;
+  overflow: hidden;
+  height: 330px;
+}
+
+.rd-skeleton-pulse {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #1a1a26 25%, #222232 50%, #1a1a26 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Empty state */
+.rd-preview__empty {
+  height: 280px;
+  border-radius: 20px;
+  border: 2px dashed rgba(255,255,255,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: rgba(255,255,255,0.25);
+  font-size: 14px;
+  background: linear-gradient(145deg, #13131a, #1b1b26);
+}
+
+/* Info box */
+.rd-info-box {
+  background: linear-gradient(145deg, #16161f, #1e1e2a);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  padding: 20px 24px;
+}
+
+.rd-info-box h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #cd0909;
+  margin: 0 0 14px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.rd-info-box ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rd-info-box li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.5;
+}
+
+.rd-info-box li svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: #cd0909;
+}
+
+/* ─── RIGHT – Form ─── */
+.rd-form-wrap {
+  background: linear-gradient(145deg, #16161f, #1c1c28);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+}
+
+.rd-form__header {
+  margin-bottom: 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-bottom: 20px;
+}
+
+.rd-form__header h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 6px;
+}
+
+.rd-form__header p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  margin: 0;
+}
+
+/* Fields */
+.rd-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.rd-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 20px;
+}
+
+.rd-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.2px;
+}
+
+.rd-field label span {
+  color: #cd0909;
+  margin-left: 2px;
+}
+
+.rd-field input,
+.rd-select-wrap select {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 13px 16px;
+  font-size: 14px;
+  color: #fff;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.rd-field input:focus,
+.rd-select-wrap select:focus {
+  border-color: #cd0909;
+  background: rgba(205,9,9,0.05);
+  box-shadow: 0 0 0 3px rgba(205,9,9,0.15);
+}
+
+.rd-field input::placeholder {
+  color: rgba(255,255,255,0.25);
+}
+
+/* Input with icon */
+.rd-input-icon {
+  position: relative;
+}
+
+.rd-input-icon svg {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,0.35);
+  pointer-events: none;
+}
+
+.rd-input-icon input {
+  padding-left: 42px;
+}
+
+/* Select */
+.rd-select-wrap {
+  position: relative;
+}
+
+.rd-select-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,0.35);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.rd-select-arrow {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,0.4);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.rd-select-wrap select {
+  padding-left: 42px;
+  padding-right: 40px;
+  cursor: pointer;
+  background-color: rgba(255,255,255,0.04);
+}
+
+.rd-select-wrap select option {
+  background: #1c1c28;
+  color: #e8e8e8;
+}
+
+/* Note */
+.rd-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.38);
+  margin: 0 0 24px;
+  line-height: 1.6;
+}
+
+.rd-note svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: #ffa500;
+}
+
+/* ─── Buttons ─── */
+.rd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 24px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  letter-spacing: 0.3px;
+}
+
+.rd-btn--primary {
+  background: linear-gradient(135deg, #cd0909 0%, #8b0000 100%);
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(205,9,9,0.4);
+}
+
+.rd-btn--primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(205,9,9,0.55);
+}
+
+.rd-btn--primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.rd-btn--primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.rd-btn--outline {
+  background: transparent;
+  border: 2px solid #cd0909;
+  color: #cd0909;
+}
+
+.rd-btn--outline:hover {
+  background: rgba(205,9,9,0.08);
+  transform: translateY(-1px);
+}
+
+/* Spinner */
+.rd-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Success ─── */
+.rd-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 48px 24px;
+  gap: 20px;
+}
+
+.rd-success__icon svg {
+  width: 72px;
+  height: 72px;
+  animation: pop 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.rd-success h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+}
+
+.rd-success p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  max-width: 340px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+@keyframes pop {
+  0%   { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ─── Animations ─── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .rd-main {
+    grid-template-columns: 1fr;
+    padding: 32px 16px 60px;
+    gap: 28px;
+  }
+
+  .rd-preview {
+    position: static;
+  }
+
+  .rd-hero {
+    height: 260px;
+  }
+
+  .rd-form-wrap {
+    padding: 28px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rd-row {
+    grid-template-columns: 1fr;
+  }
+
+  .rd-hero__title {
+    font-size: 1.8rem;
+  }
+}

@@ -1,0 +1,144 @@
+/* ===== Floating Buttons ===== */
+.floating-buttons-wrapper {
+  position: fixed;
+  left: 18px;
+  bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: 9999;
+}
+
+/* Base button style */
+.floating-btn {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.2s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.floating-btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.floating-btn:active {
+  transform: scale(0.96);
+}
+
+/* ---- Phone ---- */
+.floating-btn--phone {
+  background: linear-gradient(135deg, #1de65a 0%, #0fb846 100%);
+  color: #fff;
+}
+
+/* Ripple pulse animation */
+.floating-btn__ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: ripple-pulse 2s ease-out infinite;
+  pointer-events: none;
+}
+
+.floating-btn--phone .floating-btn__ripple {
+  background: rgba(29, 230, 90, 0.45);
+}
+
+.floating-btn--zalo .floating-btn__ripple {
+  background: rgba(0, 104, 255, 0.35);
+}
+
+@keyframes ripple-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* ---- Zalo ---- */
+.floating-btn--zalo {
+  background: linear-gradient(135deg, #0099ff 0%, #0068ff 100%);
+  color: #fff;
+  padding: 0;
+}
+
+.floating-btn--zalo img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+  border-radius: 6px;
+}
+
+/* ---- Scroll to Top ---- */
+.floating-btn--scroll-top {
+  background: linear-gradient(135deg, #c0392b 0%, #96281b 100%);
+  color: #fff;
+  /* Start hidden on the RIGHT side */
+  position: fixed;
+  right: 18px;
+  bottom: 32px;
+  left: unset;
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.2s ease;
+  box-shadow: 0 4px 16px rgba(192, 57, 43, 0.4);
+}
+
+.floating-btn--scroll-top.floating-btn--visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.floating-btn--scroll-top:hover {
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 10px 28px rgba(192, 57, 43, 0.5);
+}
+
+.floating-btn--scroll-top:active {
+  transform: scale(0.95);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+  .floating-buttons-wrapper {
+    left: 12px;
+    bottom: 20px;
+    gap: 10px;
+  }
+
+  .floating-btn {
+    width: 46px;
+    height: 46px;
+  }
+
+  .floating-btn--scroll-top {
+    right: 12px;
+    bottom: 20px;
+  }
+}
