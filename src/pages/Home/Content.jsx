@@ -195,8 +195,8 @@ const HeroCarousel = () => {
             key={i}
             onClick={() => goTo(i)}
             className={`rounded-full transition-all duration-300 ${i === current
-                ? "w-8 h-3 bg-white"
-                : "w-3 h-3 bg-white/40 hover:bg-white/70"
+              ? "w-8 h-3 bg-white"
+              : "w-3 h-3 bg-white/40 hover:bg-white/70"
               }`}
           />
         ))}
@@ -371,7 +371,7 @@ const CarModelsSection = ({ cars }) => {
               >
                 <img src={model.img} alt={model.display} style={{ width: "100%", height: 72, objectFit: "contain", marginBottom: 6 }} />
                 <p style={{ fontSize: 11, fontWeight: 800, color: "#111", margin: 0, lineHeight: 1.3 }}>{model.display}</p>
-                <p style={{ fontSize: 11, color: isActive ? "#dc2626" : "#9ca3af", margin: "2px 0 0", fontWeight: 700 }}>{formatPrice(model.minPrice)}</p>
+                <p style={{ fontSize: 11, color: isActive ? "#dc2626" : "#49494aff", margin: "2px 0 0", fontWeight: 700 }}>{formatPrice(model.minPrice)}</p>
               </div>
             );
           })}
