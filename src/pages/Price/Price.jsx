@@ -6,7 +6,7 @@ import Header from "../Home/Header";
 
 // ─── Model Groups ──────────────────────────────────────────────────────────────
 const MODEL_GROUPS = [
-  { key: "Carnival",    label: "KIA Carnival",      badge: "MPV / Gia đình",   type: "Hybrid" },
+  { key: "Carnival",    label: "KIA Carnival",      badge: "MPV / Gia đình",   type: "MPV" },
   { key: "Sorento",     label: "KIA Sorento",        badge: "SUV 7 chỗ",        type: "SUV" },
   { key: "Seltos",      label: "KIA Seltos",         badge: "SUV Đô thị",       type: "SUV" },
   { key: "Sonet",       label: "KIA Sonet",          badge: "SUV Compact",      type: "SUV" },
@@ -28,47 +28,6 @@ function formatPrice(price) {
   return `${(price / 1_000_000).toLocaleString("vi-VN")} Triệu`;
 }
 
-// ─── Single Car Card ──────────────────────────────────────────────────────────
-const CarCard = ({ car }) => {
-  return (
-    <div className="group relative bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:border-red-100 transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col">
-
-      {/* Color dot */}
-      <span className="absolute top-3 right-3 z-10 w-4 h-4 rounded-full border-2 border-white shadow-sm" style={{ backgroundColor: colorMap(car.color) }} title={car.color} />
-
-      {/* Image */}
-      <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-4 h-48 flex items-center justify-center overflow-hidden">
-        <img
-          src={car.img}
-          alt={car.name}
-          className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-        />
-      </div>
-
-      {/* Info */}
-      <div className="p-4 flex flex-col flex-1">
-        <h3 className="text-gray-900 font-black text-sm leading-snug mb-1 line-clamp-2 group-hover:text-red-600 transition-colors duration-300">
-          {car.name}
-        </h3>
-        <p className="text-gray-400 text-xs mb-3">{car.color}</p>
-
-        <div className="mt-auto pt-3 border-t border-gray-100 flex items-center justify-between">
-          <div>
-            <p className="text-[10px] text-gray-400">Giá niêm yết</p>
-            <p className="text-red-600 font-black text-base">{formatPrice(car.price)}</p>
-          </div>
-          <a
-            href="tel:0346270010"
-            className="no-underline bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-2 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-red-200 flex items-center gap-1"
-          >
-            <PhoneOutlined /> Hỏi giá
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 function colorMap(color) {
   const map = {
     Black: "#1a1a1a", White: "#f5f5f5", Silver: "#c0c0c0", Gray: "#808080",
@@ -77,6 +36,73 @@ function colorMap(color) {
   };
   return map[color] || "#9ca3af";
 }
+
+// ─── Single Car Card ──────────────────────────────────────────────────────────
+const CarCard = ({ car }) => (
+  <div
+    style={{
+      background: "#fff",
+      borderRadius: 16,
+      border: "1.5px solid #e5e7eb",
+      overflow: "hidden",
+      display: "flex",
+      flexDirection: "column",
+      transition: "all 0.25s",
+      position: "relative",
+    }}
+    onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 8px 32px rgba(0,0,0,0.12)"; e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.borderColor = "#111"; }}
+    onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "none"; e.currentTarget.style.borderColor = "#e5e7eb"; }}
+  >
+    {/* Color dot */}
+    <span
+      style={{
+        position: "absolute", top: 12, right: 12, zIndex: 10,
+        width: 14, height: 14, borderRadius: "50%",
+        border: "2px solid #fff", boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
+        background: colorMap(car.color),
+      }}
+      title={car.color}
+    />
+
+    {/* Image */}
+    <div style={{ background: "#f8f8f8", padding: 16, height: 180, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <img
+        src={car.img}
+        alt={car.name}
+        style={{ width: "100%", height: "100%", objectFit: "contain", transition: "transform 0.4s" }}
+        onMouseEnter={e => e.currentTarget.style.transform = "scale(1.05)"}
+        onMouseLeave={e => e.currentTarget.style.transform = "none"}
+      />
+    </div>
+
+    {/* Info */}
+    <div style={{ padding: "14px 16px 16px", display: "flex", flexDirection: "column", flex: 1 }}>
+      <p style={{ fontWeight: 800, fontSize: 13, color: "#111", marginBottom: 2, lineHeight: 1.4 }}>
+        {car.name}
+      </p>
+      <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 12 }}>{car.color}</p>
+
+      <div style={{ marginTop: "auto", paddingTop: 12, borderTop: "1px solid #f0f0f0", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div>
+          <p style={{ fontSize: 10, color: "#9ca3af", marginBottom: 1 }}>Giá niêm yết</p>
+          <p style={{ color: "#111", fontWeight: 900, fontSize: 15 }}>{formatPrice(car.price)}</p>
+        </div>
+        <a
+          href="tel:0346270010"
+          style={{
+            textDecoration: "none", background: "#111", color: "#fff",
+            fontSize: 11, fontWeight: 700, padding: "7px 12px", borderRadius: 10,
+            display: "flex", alignItems: "center", gap: 5, transition: "all 0.2s",
+          }}
+          onMouseEnter={e => { e.currentTarget.style.background = "#333"; }}
+          onMouseLeave={e => { e.currentTarget.style.background = "#111"; }}
+        >
+          <PhoneOutlined /> Hỏi giá
+        </a>
+      </div>
+    </div>
+  </div>
+);
 
 // ─── Model Section ─────────────────────────────────────────────────────────────
 const ModelSection = ({ group, cars, index }) => {
@@ -87,43 +113,58 @@ const ModelSection = ({ group, cars, index }) => {
   const isEven = index % 2 === 0;
 
   return (
-    <section id={group.key.toLowerCase().replace(/ /g, "-")} className="mb-20">
+    <section id={group.key.toLowerCase().replace(/ /g, "-")} style={{ marginBottom: 72 }}>
       {/* Section header */}
       <div
-        className={`relative rounded-3xl overflow-hidden mb-8 p-8 flex flex-col sm:flex-row items-center gap-6 ${
-          isEven
-            ? "bg-gradient-to-r from-gray-900 to-gray-800"
-            : "bg-gradient-to-r from-red-700 to-red-900"
-        }`}
+        style={{
+          borderRadius: 20,
+          overflow: "hidden",
+          marginBottom: 28,
+          padding: "32px 36px",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 28,
+          background: isEven ? "#111" : "#222",
+          position: "relative",
+        }}
       >
-        {/* Decorative blur */}
-        <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-white/5 blur-2xl" />
-        <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-white/5 blur-2xl" />
+        {/* Subtle bg circle */}
+        <div style={{ position: "absolute", right: -40, top: -40, width: 200, height: 200, borderRadius: "50%", background: "rgba(255,255,255,0.03)" }} />
 
-        {/* Representative image */}
-        <div className="relative w-52 h-32 flex-shrink-0">
+        {/* Car image */}
+        <div style={{ flexShrink: 0, width: 180, height: 110 }}>
           <img
             src={variants[0].img}
             alt={group.label}
-            className="w-full h-full object-contain drop-shadow-2xl"
+            style={{ width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(0 8px 24px rgba(0,0,0,0.3))" }}
           />
         </div>
 
         {/* Text */}
-        <div className="relative text-white text-center sm:text-left">
-          <div className="flex flex-wrap gap-2 justify-center sm:justify-start mb-3">
-            <span className="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">
+        <div style={{ color: "#fff", flex: 1 }}>
+          <div style={{ display: "flex", gap: 8, marginBottom: 10, flexWrap: "wrap" }}>
+            <span style={{ background: "rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.8)", fontSize: 10, fontWeight: 700, padding: "3px 10px", borderRadius: 999, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+              {group.type}
+            </span>
+            <span style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.6)", fontSize: 10, fontWeight: 700, padding: "3px 10px", borderRadius: 999 }}>
               {variants.length} phiên bản
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black mb-2">{group.label}</h2>
-          <p className="text-white/70 text-sm mb-3">
-            Giá từ{" "}
-            <span className="text-yellow-400 font-black text-lg">{formatPrice(minPrice)}</span>
-          </p>
+          <h2 style={{ fontSize: "clamp(1.4rem,3vw,2rem)", fontWeight: 900, marginBottom: 6, color: "#fff" }}>{group.label}</h2>
+          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginBottom: 16 }}>{group.badge}</p>
+          <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 12, marginBottom: 4 }}>Giá từ</p>
+          <p style={{ color: "#fff", fontWeight: 900, fontSize: "1.3rem", marginBottom: 20 }}>{formatPrice(minPrice)}</p>
           <a
             href="tel:0346270010"
-            className="no-underline inline-flex items-center gap-2 bg-white text-red-600 font-black text-sm px-5 py-2.5 rounded-full hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
+            style={{
+              textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8,
+              background: "#fff", color: "#111", fontWeight: 800, fontSize: 13,
+              padding: "10px 22px", borderRadius: 999, transition: "all 0.2s",
+              boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
+            }}
+            onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.3)"; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.2)"; }}
           >
             <PhoneOutlined /> Tư vấn ngay
           </a>
@@ -131,7 +172,7 @@ const ModelSection = ({ group, cars, index }) => {
       </div>
 
       {/* Car variants grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 16 }}>
         {variants.map((car) => (
           <CarCard key={car.id} car={car} />
         ))}
@@ -140,63 +181,22 @@ const ModelSection = ({ group, cars, index }) => {
   );
 };
 
-// ─── Floating Hotline ──────────────────────────────────────────────────────────
-const FloatingHotline = () => {
-  const [pulse, setPulse] = useState(true);
-  useEffect(() => {
-    const t = setInterval(() => setPulse((v) => !v), 2000);
-    return () => clearInterval(t);
-  }, []);
-
-  return (
-    <div className="fixed bottom-8 right-6 z-50 flex flex-col items-end gap-3">
-      {/* Label bubble */}
-      <div
-        className="bg-white shadow-xl rounded-2xl px-4 py-3 border border-red-100 text-center"
-        style={{ boxShadow: "0 8px 30px rgba(220,38,38,0.15)" }}
-      >
-        <p className="text-gray-500 text-xs mb-0.5">Hotline tư vấn</p>
-        <a
-          href="tel:0346270010"
-          className="no-underline text-red-600 font-black text-lg block hover:text-red-700 transition-colors"
-        >
-          0346 270 010
-        </a>
-        <p className="text-gray-400 text-[10px]">Gia Hưng · 24/7</p>
-      </div>
-
-      {/* Phone button */}
-      <a
-        href="tel:0346270010"
-        className="no-underline relative w-16 h-16 rounded-full bg-red-600 flex items-center justify-center shadow-lg hover:bg-red-700 transition-all duration-300 hover:scale-110"
-        style={{ boxShadow: "0 8px 25px rgba(220,38,38,0.5)" }}
-      >
-        {/* Ripple rings */}
-        <span
-          className="absolute inset-0 rounded-full bg-red-600 opacity-30 animate-ping"
-          style={{ animationDuration: "1.5s" }}
-        />
-        <span
-          className="absolute inset-0 rounded-full bg-red-400 opacity-20 animate-ping"
-          style={{ animationDuration: "2s", animationDelay: "0.5s" }}
-        />
-        <PhoneOutlined className="text-white text-2xl relative z-10" />
-      </a>
-    </div>
-  );
-};
-
 // ─── Sticky Hotline Banner ─────────────────────────────────────────────────────
 const HotlineBanner = () => (
   <div
-    className="sticky top-0 z-40 text-white text-center py-3 px-4 font-bold text-sm"
-    style={{ background: "linear-gradient(90deg, #991b1b 0%, #dc2626 50%, #991b1b 100%)" }}
+    style={{
+      position: "sticky", top: 0, zIndex: 40, background: "#111",
+      color: "#fff", textAlign: "center", padding: "12px 16px",
+      fontWeight: 700, fontSize: 13,
+    }}
   >
     📞 Hotline tư vấn mua xe:{" "}
-    <a href="tel:0346270010" className="no-underline text-yellow-300 font-black text-base hover:text-yellow-200 transition-colors">
+    <a href="tel:0346270010" style={{ color: "#fff", fontWeight: 900, fontSize: 15, textDecoration: "none" }}>
       0346 270 010
     </a>{" "}
-    <span className="text-white/80">(Gia Hưng) · Nhận báo giá tốt nhất · Giao xe sớm nhất khu vực Miền Nam</span>
+    <span style={{ color: "rgba(255,255,255,0.55)", fontWeight: 400 }}>
+      (Gia Hưng) · Nhận báo giá tốt nhất · Giao xe sớm nhất khu vực Miền Nam
+    </span>
   </div>
 );
 
@@ -211,29 +211,26 @@ const Products = () => {
   }, [dispatch, cars.length]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
+    <div style={{ minHeight: "100vh", background: "#f9f9f9" }}>
       <Header />
-
-      {/* Sticky hotline banner */}
       <HotlineBanner />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "48px 24px" }}>
         {/* Page header */}
-        <div className="text-center mb-14">
-          <p className="text-red-600 uppercase tracking-[0.3em] text-xs font-bold mb-3">
+        <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <p style={{ color: "#111", textTransform: "uppercase", letterSpacing: "0.3em", fontSize: 11, fontWeight: 700, marginBottom: 10 }}>
             Showroom KIA Biên Hòa
           </p>
-          <h1 className="text-4xl sm:text-5xl font-black text-gray-900 mb-4">
-            Tất Cả Dòng Xe KIA
+          <h1 style={{ fontSize: "clamp(1.8rem,4vw,3rem)", fontWeight: 900, color: "#111", marginBottom: 14 }}>
+            Bảng Giá Xe KIA 2026
           </h1>
-          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+          <p style={{ color: "#6b7280", fontSize: 16, maxWidth: 560, margin: "0 auto" }}>
             Khám phá đầy đủ các phiên bản – so sánh giá và trang bị để tìm chiếc xe hoàn hảo cho bạn
           </p>
         </div>
 
         {/* Quick nav */}
-        <div className="flex flex-wrap gap-2 justify-center mb-14">
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "center", marginBottom: 56 }}>
           {MODEL_GROUPS.map((g) => {
             const has = cars.some((c) => c.name.includes(g.key));
             if (!has) return null;
@@ -241,7 +238,13 @@ const Products = () => {
               <a
                 key={g.key}
                 href={`#${g.key.toLowerCase().replace(/ /g, "-")}`}
-                className="no-underline px-4 py-2 text-sm font-bold rounded-full border border-gray-200 bg-white text-gray-700 hover:border-red-400 hover:text-red-600 transition-all duration-300"
+                style={{
+                  textDecoration: "none", padding: "8px 18px", fontSize: 13, fontWeight: 700,
+                  borderRadius: 999, border: "1.5px solid #e0e0e0", background: "#fff",
+                  color: "#374151", transition: "all 0.2s",
+                }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = "#111"; e.currentTarget.style.color = "#111"; e.currentTarget.style.background = "#f5f5f5"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "#e0e0e0"; e.currentTarget.style.color = "#374151"; e.currentTarget.style.background = "#fff"; }}
               >
                 {g.label}
               </a>
@@ -251,8 +254,9 @@ const Products = () => {
 
         {/* Loading state */}
         {loading && (
-          <div className="flex justify-center py-24">
-            <div className="w-12 h-12 rounded-full border-4 border-red-600 border-t-transparent animate-spin" />
+          <div style={{ display: "flex", justifyContent: "center", padding: "80px 0" }}>
+            <div style={{ width: 44, height: 44, borderRadius: "50%", border: "4px solid #111", borderTopColor: "transparent", animation: "spin 0.8s linear infinite" }} />
+            <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
           </div>
         )}
 
@@ -262,9 +266,6 @@ const Products = () => {
             <ModelSection key={group.key} group={group} cars={cars} index={i} />
           ))}
       </div>
-
-      {/* Floating hotline button */}
-      <FloatingHotline />
     </div>
   );
 };
