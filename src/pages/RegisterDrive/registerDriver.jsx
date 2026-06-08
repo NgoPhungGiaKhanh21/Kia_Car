@@ -16,6 +16,12 @@ const INITIAL_FORM = {
     address: "",
 };
 
+const MODEL_REPRESENTATIVES = [
+    "Carnival", "Sorento", "Seltos", "Sonet",
+    "Sportage", "Carens", "K5", "K3",
+    "Soluto", "New Morning", "Morning MT",
+];
+
 export default function RegisterDriver() {
     const [cars, setCars] = useState([]);
     const [selectedCar, setSelectedCar] = useState(null);
@@ -24,13 +30,19 @@ export default function RegisterDriver() {
     const [submitting, setSubmitting] = useState(false);
     const [success, setSuccess] = useState(false);
 
+    const selectedCarShortName = MODEL_REPRESENTATIVES.find((m) => selectedCar?.name?.includes(m)) || selectedCar?.name;
+
     // Load danh sách xe
     useEffect(() => {
         setLoading(true);
         getAllCarApi()
             .then((res) => {
-                const data = res?.data?.data?.data || [];
-                setCars(data);
+                const rawData = res?.data?.data?.data || [];
+                // Lấy 1 xe đại diện mỗi dòng
+                const unique = MODEL_REPRESENTATIVES
+                    .map((model) => rawData.find((c) => c.name?.includes(model)))
+                    .filter(Boolean);
+                setCars(unique);
             })
             .catch(() => toast.error("Không thể tải danh sách xe!"))
             .finally(() => setLoading(false));
@@ -111,14 +123,14 @@ export default function RegisterDriver() {
                         <div className="rd-preview__card">
                             <img
                                 src={selectedCar.img}
-                                alt={selectedCar.name}
+                                alt={selectedCarShortName}
                                 className="rd-preview__img"
                             />
                             <div className="rd-preview__info">
                                 <span className={`rd-badge rd-badge--${selectedCar.type?.toLowerCase()}`}>
                                     {selectedCar.type}
                                 </span>
-                                <h2 className="rd-preview__name">{selectedCar.name}</h2>
+                                <h2 className="rd-preview__name">{selectedCarShortName}</h2>
                                 <p className="rd-preview__color">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" /></svg>
                                     Màu: <strong>{selectedCar.color}</strong>
@@ -240,11 +252,19 @@ export default function RegisterDriver() {
                                         required
                                     >
                                         <option value="">-- Chọn mẫu xe --</option>
-                                        {cars.map((car) => (
-                                            <option key={car.id} value={car.id}>
-                                                {car.name}
-                                            </option>
-                                        ))}
+                                        {cars.map((car) => {
+                                            const MODEL_REPRESENTATIVES = [
+                                                "Carnival", "Sorento", "Seltos", "Sonet",
+                                                "Sportage", "Carens", "K5", "K3",
+                                                "Soluto", "New Morning", "Morning MT",
+                                            ];
+                                            const model = MODEL_REPRESENTATIVES.find((m) => car.name?.includes(m));
+                                            return (
+                                                <option key={car.id} value={car.id}>
+                                                    {model || car.name}
+                                                </option>
+                                            );
+                                        })}
                                     </select>
                                     <svg className="rd-select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M7 10l5 5 5-5z" />

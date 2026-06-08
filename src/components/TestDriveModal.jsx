@@ -41,6 +41,16 @@ function TestDriveModal() {
   const { getAllCar } = useSelector((state) => state.getAllCar);
   const cars = getAllCar?.data?.data || [];
 
+  // Danh sách dòng xe đại diện theo đúng thứ tự hiển thị
+  const MODEL_REPRESENTATIVES = [
+    "Carnival", "Sorento", "Seltos", "Sonet",
+    "Sportage", "Carens", "K5", "K3",
+    "Soluto", "New Morning", "Morning MT",
+  ];
+  const uniqueModelCars = MODEL_REPRESENTATIVES
+    .map((model) => cars.find((c) => c.name?.includes(model)))
+    .filter(Boolean);
+
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -51,6 +61,7 @@ function TestDriveModal() {
 
   // Xe đang được chọn (chỉ dùng để hiển thị ảnh, KHÔNG gửi vào API)
   const selectedCar = cars.find((c) => String(c.id) === String(form.carID)) || null;
+  const selectedModelName = MODEL_REPRESENTATIVES.find((m) => selectedCar?.name?.includes(m)) || selectedCar?.name;
 
   // Fetch cars if not yet loaded
   useEffect(() => {
@@ -241,11 +252,14 @@ function TestDriveModal() {
                     className={errors.carID ? "tdm-error" : ""}
                   >
                     <option value="">-- Chọn mẫu xe --</option>
-                    {cars.map((car) => (
-                      <option key={car.id} value={car.id}>
-                        {car.name}
-                      </option>
-                    ))}
+                    {uniqueModelCars.map((car) => {
+                      const model = MODEL_REPRESENTATIVES.find((m) => car.name?.includes(m));
+                      return (
+                        <option key={car.id} value={car.id}>
+                          {model || car.name}
+                        </option>
+                      );
+                    })}
                   </select>
                   {errors.carID && <span className="tdm-err-msg">{errors.carID}</span>}
 
@@ -257,7 +271,7 @@ function TestDriveModal() {
                         alt={selectedCar.name}
                         className="tdm-car-preview-img"
                       />
-                      <p className="tdm-car-preview-name">{selectedCar.name}</p>
+                      <p className="tdm-car-preview-name">{selectedModelName}</p>
                     </div>
                   )}
                 </div>
