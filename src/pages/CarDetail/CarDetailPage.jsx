@@ -2,8 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCarRequest } from "../../redux/getAllCar/getAllCarSlice";
 import { Link } from "react-router-dom";
-import { PhoneOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
-import { Button, Spin } from "antd";
+import { Spin } from "antd";
 import Header from "../Home/Header";
 
 function formatPrice(price) {
@@ -153,18 +152,18 @@ const CarDetailPage = ({
 
         {/* Text */}
         <div
-          className="relative z-10 h-full flex flex-col justify-center pl-12 lg:pl-24"
+          className="relative z-10 h-full flex flex-col justify-center px-5 sm:pl-12 lg:pl-24"
           style={{ maxWidth: 560 }}
         >
           <p
-            className="text-xs font-bold uppercase tracking-[0.4em] mb-4"
+            className="text-xs font-bold uppercase tracking-[0.4em] mb-3 sm:mb-4"
             style={{ color: "#e8001d" }}
           >
             {displayName}
           </p>
           <h1
-            className="font-black leading-tight text-white mb-4"
-            style={{ fontSize: "clamp(2rem, 4.5vw, 3.6rem)" }}
+            className="font-black leading-tight text-white mb-3 sm:mb-4"
+            style={{ fontSize: "clamp(1.6rem, 4.5vw, 3.6rem)" }}
           >
             {tagline}
             {highlight && (
@@ -175,51 +174,55 @@ const CarDetailPage = ({
             )}
           </h1>
 
-          <p className="text-white font-bold text-lg mb-1">
+          <p className="text-white font-bold text-base sm:text-lg mb-1">
             {cleanName(selected?.name)}
           </p>
 
-          <div className="mb-8">
+          <div className="mb-6 sm:mb-8">
             <p className="text-gray-400 text-xs uppercase tracking-widest mb-1">
               Giá từ
             </p>
             <p
               className="font-black"
-              style={{ fontSize: "2rem", color: "#e8001d" }}
+              style={{ fontSize: "clamp(1.5rem, 4vw, 2rem)", color: "#e8001d" }}
             >
               {selected ? formatPrice(selected.price) : "—"}
             </p>
           </div>
 
           <div className="flex gap-3 flex-wrap">
-            <a href="tel:0346270010">
-              <Button
-                type="primary"
-                size="large"
-                icon={<PhoneOutlined />}
+            <a href="tel:0346270010" className="no-underline">
+              <button
                 style={{
                   background: "#e8001d",
                   border: "none",
                   borderRadius: 999,
                   fontWeight: 700,
                   height: 48,
-                  paddingInline: 28,
+                  paddingInline: 24,
+                  color: "#fff",
+                  WebkitTextFillColor: "#fff",
+                  fontSize: 14,
+                  cursor: "pointer",
+                  transition: "all 0.2s",
                 }}
               >
                 Liên hệ ngay
-              </Button>
+              </button>
             </a>
             {pdfFile && (
-              <Button
-                size="large"
+              <button
                 style={{
                   background: "transparent",
                   border: "1px solid rgba(255,255,255,0.3)",
                   color: "#fff",
+                  WebkitTextFillColor: "#fff",
                   borderRadius: 999,
                   fontWeight: 700,
                   height: 48,
-                  paddingInline: 28,
+                  paddingInline: 24,
+                  fontSize: 14,
+                  cursor: "pointer",
                 }}
                 onClick={() =>
                   document
@@ -228,7 +231,7 @@ const CarDetailPage = ({
                 }
               >
                 Xem Brochure
-              </Button>
+              </button>
             )}
           </div>
         </div>
@@ -236,23 +239,25 @@ const CarDetailPage = ({
         {/* Prev / Next */}
         <button
           onClick={handlePrev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full border border-white/20 text-white transition-all duration-300 hover:scale-110"
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full border border-white/20 text-white transition-all duration-300 hover:scale-110 cursor-pointer"
           style={{
             background: "rgba(255,255,255,0.08)",
             backdropFilter: "blur(8px)",
           }}
+          aria-label="Phën bản trước"
         >
-          <LeftOutlined />
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="15 18 9 12 15 6" /></svg>
         </button>
         <button
           onClick={handleNext}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full border border-white/20 text-white transition-all duration-300 hover:scale-110"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full border border-white/20 text-white transition-all duration-300 hover:scale-110 cursor-pointer"
           style={{
             background: "rgba(255,255,255,0.08)",
             backdropFilter: "blur(8px)",
           }}
+          aria-label="Phën bản sau"
         >
-          <RightOutlined />
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
         </button>
 
         {/* Dots */}
@@ -283,10 +288,10 @@ const CarDetailPage = ({
         <div className="w-full flex items-stretch" style={{ minHeight: 140 }}>
           <button
             onClick={handlePrev}
-            className="flex-shrink-0 flex items-center justify-center px-4 text-white/50 hover:text-white transition-colors duration-200"
-            style={{ background: "#0d0d0d", minWidth: 48 }}
+            className="flex-shrink-0 flex items-center justify-center px-3 sm:px-4 text-white/50 hover:text-white transition-colors duration-200 cursor-pointer border-none"
+            style={{ background: "#0d0d0d", minWidth: 40 }}
           >
-            <LeftOutlined />
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="15 18 9 12 15 6" /></svg>
           </button>
 
           <div
@@ -355,10 +360,10 @@ const CarDetailPage = ({
 
           <button
             onClick={handleNext}
-            className="flex-shrink-0 flex items-center justify-center px-4 text-white/50 hover:text-white transition-colors duration-200"
-            style={{ background: "#0d0d0d", minWidth: 48 }}
+            className="flex-shrink-0 flex items-center justify-center px-3 sm:px-4 text-white/50 hover:text-white transition-colors duration-200 cursor-pointer border-none"
+            style={{ background: "#0d0d0d", minWidth: 40 }}
           >
-            <RightOutlined />
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
           </button>
         </div>
       </section>
@@ -383,40 +388,42 @@ const CarDetailPage = ({
         <p className="text-red-200 mb-8 text-base">
           Đội ngũ tư vấn luôn sẵn sàng hỗ trợ bạn 24/7
         </p>
-        <div className="flex gap-4 justify-center flex-wrap">
-          <a href="tel:0346270010">
-            <Button
-              size="large"
-              icon={<PhoneOutlined />}
+        <div className="flex gap-3 sm:gap-4 justify-center flex-wrap">
+          <a href="tel:0346270010" className="no-underline">
+            <button
               style={{
                 background: "#fff",
                 color: "#e8001d",
+                WebkitTextFillColor: "#e8001d",
                 border: "none",
                 borderRadius: 999,
                 fontWeight: 800,
                 height: 52,
-                paddingInline: 36,
+                paddingInline: 32,
                 fontSize: 16,
+                cursor: "pointer",
+                transition: "all 0.2s",
               }}
             >
               0346 270 010
-            </Button>
+            </button>
           </a>
-          <Link to="/">
-            <Button
-              size="large"
+          <Link to="/" className="no-underline">
+            <button
               style={{
                 background: "transparent",
                 border: "2px solid rgba(255,255,255,0.5)",
                 color: "#fff",
+                WebkitTextFillColor: "#fff",
                 borderRadius: 999,
                 fontWeight: 700,
                 height: 52,
-                paddingInline: 36,
+                paddingInline: 32,
+                cursor: "pointer",
               }}
             >
               Xem dòng xe khác
-            </Button>
+            </button>
           </Link>
         </div>
       </section>

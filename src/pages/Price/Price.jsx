@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCarRequest } from "../../redux/getAllCar/getAllCarSlice";
-import { PhoneOutlined } from "@ant-design/icons";
 import Header from "../Home/Header";
 
 // ─── Model Groups ──────────────────────────────────────────────────────────────
@@ -92,12 +91,12 @@ const CarCard = ({ car }) => (
           style={{
             textDecoration: "none", background: "#111", color: "#fff",
             fontSize: 11, fontWeight: 700, padding: "7px 12px", borderRadius: 10,
-            display: "flex", alignItems: "center", gap: 5, transition: "all 0.2s",
+            display: "inline-flex", alignItems: "center", transition: "all 0.2s",
           }}
           onMouseEnter={e => { e.currentTarget.style.background = "#333"; }}
           onMouseLeave={e => { e.currentTarget.style.background = "#111"; }}
         >
-          <PhoneOutlined /> Hỏi giá
+          Hỏi giá
         </a>
       </div>
     </div>
@@ -166,7 +165,7 @@ const ModelSection = ({ group, cars, index }) => {
             onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.3)"; }}
             onMouseLeave={e => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.2)"; }}
           >
-            <PhoneOutlined /> Tư vấn ngay
+            Tư vấn ngay
           </a>
         </div>
       </div>
@@ -190,7 +189,7 @@ const HotlineBanner = () => (
       fontWeight: 700, fontSize: 13,
     }}
   >
-    📞 Hotline tư vấn mua xe:{" "}
+    Hotline tư vấn mua xe:{" "}
     <a href="tel:0346270010" style={{ color: "#fff", fontWeight: 900, fontSize: 15, textDecoration: "none" }}>
       0346 270 010
     </a>{" "}

@@ -1,15 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCarRequest } from "../../redux/getAllCar/getAllCarSlice";
-import { Button, Spin } from "antd";
+import { Spin } from "antd";
 import { Link } from "react-router-dom";
-import {
-  PhoneOutlined,
-  RightOutlined,
-  LeftOutlined,
-  CarOutlined,
-  CheckCircleOutlined,
-} from "@ant-design/icons";
 
 // Map từng dòng xe → đường dẫn trang chi tiết
 const DETAIL_ROUTES = {
@@ -104,7 +97,7 @@ const HeroCarousel = () => {
   return (
     <section
       className="relative w-full overflow-hidden"
-      style={{ height: "90vh", minHeight: 500 }}
+      style={{ height: "clamp(480px, 90vw, 90vh)", minHeight: 380 }}
     >
       {/* Background image */}
       <div
@@ -120,17 +113,17 @@ const HeroCarousel = () => {
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center px-8 sm:px-16 lg:px-28 max-w-4xl">
+      <div className="relative z-10 h-full flex flex-col justify-center px-5 sm:px-16 lg:px-28 max-w-4xl">
         <p
-          className="text-white/70 uppercase tracking-[0.3em] text-sm font-bold mb-3"
+          className="text-white/70 uppercase tracking-[0.2em] sm:tracking-[0.3em] text-xs sm:text-sm font-bold mb-2 sm:mb-3"
           style={{ opacity: animating ? 0 : 1, transition: "opacity 0.5s" }}
         >
           KIA Vietnam – Thaco Kia
         </p>
         <h1
-          className="text-white font-black leading-tight mb-4"
+          className="text-white font-black leading-tight mb-3 sm:mb-4"
           style={{
-            fontSize: "clamp(2rem, 5vw, 3.5rem)",
+            fontSize: "clamp(1.5rem, 5vw, 3.5rem)",
             opacity: animating ? 0 : 1,
             transition: "opacity 0.5s 0.1s",
           }}
@@ -138,7 +131,7 @@ const HeroCarousel = () => {
           {slide.title}
         </h1>
         <p
-          className="text-gray-200 text-lg mb-8 max-w-lg"
+          className="text-gray-200 text-sm sm:text-lg mb-5 sm:mb-8 max-w-lg"
           style={{
             opacity: animating ? 0 : 1,
             transition: "opacity 0.5s 0.15s",
@@ -147,29 +140,30 @@ const HeroCarousel = () => {
           {slide.subtitle}
         </p>
         <div
-          className="flex gap-4 flex-wrap"
+          className="flex gap-3 sm:gap-4 flex-wrap"
           style={{
             opacity: animating ? 0 : 1,
             transition: "opacity 0.5s 0.2s",
           }}
         >
-          <Button
-            type="primary"
-            size="large"
-            icon={<CarOutlined />}
-            className="h-12 px-8 border-none font-bold rounded-full text-white uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-1"
-            style={{ background: "#111" }}
+          <button
+            className="h-11 sm:h-12 px-6 sm:px-8 border-none font-bold rounded-full uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+            style={{ background: "#111", color: "#fff", fontSize: "clamp(12px, 3vw, 14px)" }}
           >
             {slide.cta}
-          </Button>
-          <a href="tel:0346270010">
-            <Button
-              size="large"
-              icon={<PhoneOutlined />}
-              className="h-12 px-8 border-white/50 text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm font-bold rounded-full uppercase tracking-wider transition-all duration-300 hover:-translate-y-1"
+          </button>
+          <a href="tel:0346270010" className="no-underline">
+            <button
+              className="h-11 sm:h-12 px-6 sm:px-8 backdrop-blur-sm font-bold rounded-full uppercase tracking-wider transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+              style={{
+                background: "rgba(255,255,255,0.1)",
+                border: "1.5px solid rgba(255,255,255,0.5)",
+                color: "#fff",
+                fontSize: "clamp(12px, 3vw, 14px)",
+              }}
             >
               0346 270 010
-            </Button>
+            </button>
           </a>
         </div>
       </div>
@@ -177,26 +171,29 @@ const HeroCarousel = () => {
       {/* Prev / Next buttons */}
       <button
         onClick={prev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur border border-white/20 text-white hover:bg-white/30 transition-all duration-300 hover:scale-110"
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur border border-white/20 text-white hover:bg-white/30 transition-all duration-300 hover:scale-110 cursor-pointer"
+        aria-label="Ảnh trước"
       >
-        <LeftOutlined />
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="15 18 9 12 15 6" /></svg>
       </button>
       <button
         onClick={next}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur border border-white/20 text-white hover:bg-white/30 transition-all duration-300 hover:scale-110"
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur border border-white/20 text-white hover:bg-white/30 transition-all duration-300 hover:scale-110 cursor-pointer"
+        aria-label="Ảnh sau"
       >
-        <RightOutlined />
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
       </button>
 
       {/* Dots */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+      <div className="absolute bottom-5 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2 sm:gap-3">
         {carouselSlides.map((_, i) => (
           <button
             key={i}
             onClick={() => goTo(i)}
-            className={`rounded-full transition-all duration-300 ${i === current
-              ? "w-8 h-3 bg-white"
-              : "w-3 h-3 bg-white/40 hover:bg-white/70"
+            aria-label={`Slide ${i + 1}`}
+            className={`rounded-full transition-all duration-300 border-none cursor-pointer ${i === current
+              ? "w-6 sm:w-8 h-2.5 sm:h-3 bg-white"
+              : "w-2.5 sm:w-3 h-2.5 sm:h-3 bg-white/40 hover:bg-white/70"
               }`}
           />
         ))}
@@ -207,42 +204,38 @@ const HeroCarousel = () => {
 
 // ─── Hotline Banner ───────────────────────────────────────────────────────────
 const HotlineBanner = () => (
-  <section style={{ background: "#111", padding: "20px 16px" }}>
-    <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-4 text-white text-center">
+  <section style={{ background: "#111", padding: "16px 16px" }}>
+    <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 text-white text-center">
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.1)" }}>
-          <PhoneOutlined className="text-xl" />
-        </div>
         <div className="text-left">
           <p className="text-xs uppercase tracking-widest font-semibold leading-none mb-1" style={{ color: "rgba(255,255,255,0.6)" }}>
             Hotline Tư Vấn – Miễn phí 24/7
           </p>
           <a
             href="tel:0346270010"
-            className="text-2xl sm:text-3xl font-black text-white tracking-wider no-underline hover:text-gray-300 transition-colors duration-300"
+            className="text-xl sm:text-3xl font-black text-white tracking-wider no-underline hover:text-gray-300 transition-colors duration-300"
           >
             0346 270 010
           </a>
         </div>
       </div>
       <div className="hidden sm:block w-px h-10" style={{ background: "rgba(255,255,255,0.2)" }} />
-      <div className="flex gap-6 text-sm font-medium" style={{ color: "rgba(255,255,255,0.7)" }}>
+      <div className="hidden sm:flex gap-4 text-sm font-medium flex-wrap justify-center" style={{ color: "rgba(255,255,255,0.7)" }}>
         {["Tư vấn chuyên nghiệp", "Đặt lịch lái thử", "Nhận báo giá nhanh"].map(
           (t) => (
             <span key={t} className="flex items-center gap-1">
-              <CheckCircleOutlined style={{ color: "rgba(255,255,255,0.8)" }} /> {t}
+              ✓ {t}
             </span>
           ),
         )}
       </div>
-      <a href="tel:0346270010" className="sm:ml-4">
-        <Button
-          size="large"
-          className="border-none font-black rounded-full px-8 h-12 uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-1"
-          style={{ background: "#fff", color: "#111" }}
+      <a href="tel:0346270010" className="sm:ml-4 no-underline">
+        <button
+          className="font-black rounded-full px-6 sm:px-8 h-11 sm:h-12 uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-1 border-none cursor-pointer"
+          style={{ background: "#fff", color: "#111", fontSize: 13 }}
         >
           Gọi ngay
-        </Button>
+        </button>
       </a>
     </div>
   </section>
@@ -398,43 +391,47 @@ const CarModelsSection = ({ cars }) => {
 const WhyKia = () => {
   const features = [
     {
-      icon: "🤝",
       title: "Tư Vấn Tận Tình",
       desc: "Đội ngũ tư vấn được đào tạo chuyên nghiệp, giàu kinh nghiệm luôn sẵn lòng giúp quý khách tìm được chiếc xe ưng ý.",
     },
     {
-      icon: "💰",
       title: "Giá Ưu Đãi – Giao Xe Sớm – Trả Góp 80%",
       desc: "Đại lý xe KIA Biên Hòa luôn cam kết mang lại mức giá ưu đãi nhất cho quý khách với thời gian giao xe sớm tại khu vực Miền Nam.",
     },
     {
-      icon: "🛡️",
       title: "Bảo Hành Tiêu Chuẩn Toàn Cầu",
       desc: "Cung cấp phụ tùng ô tô KIA chính hãng. Quý khách hãy yên tâm chiếc xe khi mua tại KIA Biên Hòa luôn được chăm sóc kỹ lưỡng.",
     },
   ];
 
   return (
-    <section className="bg-white py-20 px-4">
+    <section className="bg-white py-16 sm:py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center mb-10 sm:mb-12">
           <p className="uppercase tracking-[0.3em] text-xs font-bold mb-3" style={{ color: "#111" }}>
             Tại sao chọn KIA Biên Hòa?
           </p>
-          <h2 className="text-4xl font-black text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4">
             Cam Kết Từ Chúng Tôi
           </h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {features.map((f) => (
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6">
+          {features.map((f, idx) => (
             <div
               key={f.title}
-              className="group p-8 rounded-2xl border border-gray-100 hover:border-gray-300 hover:shadow-xl transition-all duration-400 text-center hover:-translate-y-2"
+              className="group p-6 sm:p-8 rounded-2xl border border-gray-100 hover:border-gray-300 hover:shadow-xl transition-all duration-300 text-center hover:-translate-y-2"
             >
-              <div className="text-5xl mb-5 group-hover:scale-110 transition-transform duration-300 inline-block">
-                {f.icon}
-              </div>
-              <h3 className="font-black text-gray-900 text-lg mb-3 uppercase tracking-wide">
+              {/* Accent line instead of icon */}
+              <div
+                className="mx-auto mb-5 rounded-full"
+                style={{
+                  width: 40,
+                  height: 4,
+                  background: "linear-gradient(90deg, #111 0%, #444 100%)",
+                  transition: "width 0.3s",
+                }}
+              />
+              <h3 className="font-black text-gray-900 text-base sm:text-lg mb-3 uppercase tracking-wide">
                 {f.title}
               </h3>
               <p className="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
@@ -492,25 +489,29 @@ const CtaBanner = () => (
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <a href="tel:0346270010">
-          <Button
-            size="large"
-            icon={<PhoneOutlined />}
-            className="h-14 px-10 border-none font-black rounded-full text-gray-900 uppercase tracking-widest text-base shadow-lg transition-all duration-300 hover:-translate-y-1"
-            style={{ background: "#fff", color: "#111" }}
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+        <a href="tel:0346270010" className="no-underline">
+          <button
+            className="h-13 sm:h-14 px-8 sm:px-10 border-none font-black rounded-full uppercase tracking-widest shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+            style={{ background: "#fff", color: "#111", fontSize: "clamp(13px, 3vw, 16px)", padding: "14px 36px" }}
           >
             Gọi ngay
-          </Button>
+          </button>
         </a>
-        <a href="/dang-ky-lai-thu">
-          <Button
-            size="large"
-            className="h-14 px-10 font-black rounded-full uppercase tracking-widest text-base transition-all duration-300 hover:-translate-y-1"
-            style={{ background: "transparent", border: "1.5px solid rgba(255,255,255,0.35)", color: "#fff" }}
+        <a href="/dang-ky-lai-thu" className="no-underline">
+          <button
+            className="h-13 sm:h-14 font-black rounded-full uppercase tracking-widest transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+            style={{
+              background: "transparent",
+              border: "1.5px solid rgba(255,255,255,0.35)",
+              color: "#fff",
+              fontSize: "clamp(13px, 3vw, 16px)",
+              padding: "14px 36px",
+              WebkitTextFillColor: "#fff",
+            }}
           >
             Đặt lịch lái thử
-          </Button>
+          </button>
         </a>
       </div>
     </div>

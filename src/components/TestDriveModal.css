@@ -273,6 +273,7 @@
   border: none;
   background: #111;
   color: #fff;
+  -webkit-text-fill-color: #fff;
   font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -463,34 +464,157 @@
 @media (max-width: 640px) {
   .tdm-card {
     flex-direction: column;
-    max-height: 96vh;
-    border-radius: 18px;
+    max-height: 94vh;
+    border-radius: 16px;
   }
 
   .tdm-panel-left {
     width: 100%;
-    padding: 28px 24px 22px;
+    padding: 22px 20px 18px;
+    flex-shrink: 0;
   }
 
   .tdm-panel-left::before {
     display: none;
   }
 
+  .tdm-panel-left-body h2 {
+    font-size: clamp(1.1rem, 5vw, 1.5rem);
+  }
+
+  .tdm-panel-left > p {
+    display: none;
+  }
+
   .tdm-perks {
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
+    margin-top: 12px;
   }
 
   .tdm-perks li {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .tdm-panel-right {
-    padding: 24px 20px 20px;
+    padding: 20px 18px 18px;
+    flex: 1;
+    overflow-y: auto;
   }
 
   .tdm-row {
     grid-template-columns: 1fr;
+  }
+
+  .tdm-submit {
+    padding: 12px;
+    font-size: 13px;
+  }
+}
+
+/* ===== Dark Mode Support ===== */
+@media (prefers-color-scheme: dark) {
+  /* The modal card stays light so forms are readable */
+  .tdm-card {
+    background: #1a1a1a;
+  }
+
+  .tdm-panel-right h3 {
+    color: #f0f0f0;
+  }
+
+  .tdm-panel-right > p {
+    color: #9ca3af;
+  }
+
+  .tdm-field label {
+    color: #d1d5db;
+  }
+
+  .tdm-field input,
+  .tdm-field select {
+    background: #2a2a2a;
+    border-color: #444;
+    color: #f0f0f0;
+  }
+
+  .tdm-field input::placeholder {
+    color: #6b7280;
+  }
+
+  .tdm-field select option {
+    background: #2a2a2a;
+    color: #f0f0f0;
+  }
+
+  .tdm-field input:focus,
+  .tdm-field select:focus {
+    border-color: #555;
+    background: #333;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.05);
+  }
+
+  /* ── Submit button: ALWAYS white text, dark background ── */
+  .tdm-submit {
+    background: #111 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
+
+  .tdm-submit:hover:not(:disabled) {
+    background: #dc2626 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
+
+  .tdm-skip {
+    color: #6b7280;
+  }
+
+  .tdm-skip button {
+    color: #9ca3af;
+  }
+
+  .tdm-skip button:hover {
+    color: #f0f0f0;
+  }
+
+  .tdm-close {
+    background: rgba(255,255,255,0.1);
+    color: #d1d5db;
+  }
+
+  .tdm-close:hover {
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+  }
+
+  .tdm-car-preview {
+    background: linear-gradient(135deg, #2a2a2a, #222);
+    border-color: #444;
+  }
+
+  .tdm-car-preview-name {
+    color: #f0f0f0;
+  }
+
+  .tdm-success h3 {
+    color: #f0f0f0;
+  }
+
+  .tdm-success p {
+    color: #9ca3af;
+  }
+
+  /* Success close button */
+  .tdm-success .tdm-close-success {
+    background: #111 !important;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+  }
+
+  .tdm-success .tdm-close-success:hover {
+    background: #dc2626 !important;
   }
 }
