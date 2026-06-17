@@ -43,17 +43,87 @@ const carouselSlides = [
 
 // ─── Car Model Config ─────────────────────────────────────────────────────────
 const MODEL_CONFIG = [
-  { key: "Carnival", display: "KIA Carnival", badge: "MPV / Gia đình", type: "MPV", specs: ["Động cơ 3.5L V6", "Hộp số tự động 8 cấp", "7 chỗ rộng rãi"] },
-  { key: "Sorento", display: "KIA Sorento", badge: "SUV 7 chỗ", type: "SUV", specs: ["Smartstream 2.2 Diesel", "Hộp số tự động 8 cấp", "7 chỗ ngồi"] },
-  { key: "Seltos", display: "KIA Seltos", badge: "SUV Đô thị", type: "SUV", specs: ["Động cơ 1.4 Turbo", "Hộp số tự động 7 cấp (DCT)", "5 chỗ"] },
-  { key: "Sonet", display: "KIA Sonet", badge: "SUV Compact", type: "SUV", specs: ["Động cơ 1.5L MPI", "Hộp số tự động 6 cấp", "5 chỗ"] },
-  { key: "Sportage", display: "KIA Sportage", badge: "SUV Thể thao", type: "SUV", specs: ["Smartstream 1.6 Turbo Hybrid", "Hộp số tự động 6 cấp (6AT)", "5 chỗ"] },
-  { key: "Carens", display: "KIA Carens", badge: "MPV Thông minh", type: "MPV", specs: ["Động cơ 1.5 Turbo", "Hộp số tự động 7 cấp (DCT)", "6/7 chỗ"] },
-  { key: "K5", display: "KIA K5", badge: "Sedan Hạng D", type: "Sedan", specs: ["Smartstream 2.0L MPI", "Hộp số tự động 8 cấp", "5 chỗ"] },
-  { key: "K3", display: "KIA K3", badge: "Sedan Hạng C", type: "Sedan", specs: ["Smartstream 2.0L MPI", "Hộp số tự động 6 cấp", "5 chỗ"] },
-  { key: "Soluto", display: "KIA Soluto", badge: "Sedan Hạng B", type: "Sedan", specs: ["Động cơ 1.4L MPI", "Hộp số tự động 4 cấp", "5 chỗ"] },
-  { key: "New Morning", display: "KIA New Morning", badge: "Hatchback", type: "Hatchback", specs: ["Động cơ 1.0L MPI", "Hộp số tự động 4 cấp", "5 chỗ"] },
-  { key: "Morning MT", display: "KIA Morning MT", badge: "Hatchback", type: "Hatchback", specs: ["Động cơ 1.0L MPI", "Hộp số sàn 5 cấp", "5 chỗ"] },
+  {
+    key: "Carnival",
+    display: "KIA Carnival",
+    badge: "MPV / Gia đình",
+    type: "MPV",
+    specs: ["Động cơ 3.5L V6", "Hộp số tự động 8 cấp", "7 chỗ rộng rãi"],
+  },
+  {
+    key: "Sorento",
+    display: "KIA Sorento",
+    badge: "SUV 7 chỗ",
+    type: "SUV",
+    specs: ["Smartstream 2.2 Diesel", "Hộp số tự động 8 cấp", "7 chỗ ngồi"],
+  },
+  {
+    key: "Seltos",
+    display: "KIA Seltos",
+    badge: "SUV Đô thị",
+    type: "SUV",
+    specs: ["Động cơ 1.4 Turbo", "Hộp số tự động 7 cấp (DCT)", "5 chỗ"],
+  },
+  {
+    key: "Sonet",
+    display: "KIA Sonet",
+    badge: "SUV Compact",
+    type: "SUV",
+    specs: ["Động cơ 1.5L MPI", "Hộp số tự động 6 cấp", "5 chỗ"],
+  },
+  {
+    key: "Sportage",
+    display: "KIA Sportage",
+    badge: "SUV Thể thao",
+    type: "SUV",
+    specs: [
+      "Smartstream 1.6 Turbo Hybrid",
+      "Hộp số tự động 6 cấp (6AT)",
+      "5 chỗ",
+    ],
+  },
+  {
+    key: "Carens",
+    display: "KIA Carens",
+    badge: "MPV Thông minh",
+    type: "MPV",
+    specs: ["Động cơ 1.5 Turbo", "Hộp số tự động 7 cấp (DCT)", "6/7 chỗ"],
+  },
+  {
+    key: "K5",
+    display: "KIA K5",
+    badge: "Sedan Hạng D",
+    type: "Sedan",
+    specs: ["Smartstream 2.0L MPI", "Hộp số tự động 8 cấp", "5 chỗ"],
+  },
+  {
+    key: "K3",
+    display: "KIA K3",
+    badge: "Sedan Hạng C",
+    type: "Sedan",
+    specs: ["Smartstream 2.0L MPI", "Hộp số tự động 6 cấp", "5 chỗ"],
+  },
+  {
+    key: "Soluto",
+    display: "KIA Soluto",
+    badge: "Sedan Hạng B",
+    type: "Sedan",
+    specs: ["Động cơ 1.4L MPI", "Hộp số tự động 4 cấp", "5 chỗ"],
+  },
+  {
+    key: "New Morning",
+    display: "KIA New Morning",
+    badge: "Hatchback",
+    type: "Hatchback",
+    specs: ["Động cơ 1.0L MPI", "Hộp số tự động 4 cấp", "5 chỗ"],
+  },
+  {
+    key: "Morning MT",
+    display: "KIA Morning MT",
+    badge: "Hatchback",
+    type: "Hatchback",
+    specs: ["Động cơ 1.0L MPI", "Hộp số sàn 5 cấp", "5 chỗ"],
+  },
 ];
 
 const TYPE_TABS = ["Tất cả", "SUV", "MPV", "Sedan", "Hatchback"];
@@ -148,7 +218,11 @@ const HeroCarousel = () => {
         >
           <button
             className="h-11 sm:h-12 px-6 sm:px-8 border-none font-bold rounded-full uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-            style={{ background: "#111", color: "#fff", fontSize: "clamp(12px, 3vw, 14px)" }}
+            style={{
+              background: "#fff",
+              color: "#111",
+              fontSize: "clamp(12px, 3vw, 14px)",
+            }}
           >
             {slide.cta}
           </button>
@@ -174,14 +248,32 @@ const HeroCarousel = () => {
         className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur border border-white/20 text-white hover:bg-white/30 transition-all duration-300 hover:scale-110 cursor-pointer"
         aria-label="Ảnh trước"
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="15 18 9 12 15 6" /></svg>
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+        >
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
       </button>
       <button
         onClick={next}
         className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur border border-white/20 text-white hover:bg-white/30 transition-all duration-300 hover:scale-110 cursor-pointer"
         aria-label="Ảnh sau"
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+        >
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
       </button>
 
       {/* Dots */}
@@ -191,10 +283,11 @@ const HeroCarousel = () => {
             key={i}
             onClick={() => goTo(i)}
             aria-label={`Slide ${i + 1}`}
-            className={`rounded-full transition-all duration-300 border-none cursor-pointer ${i === current
-              ? "w-6 sm:w-8 h-2.5 sm:h-3 bg-white"
-              : "w-2.5 sm:w-3 h-2.5 sm:h-3 bg-white/40 hover:bg-white/70"
-              }`}
+            className={`rounded-full transition-all duration-300 border-none cursor-pointer ${
+              i === current
+                ? "w-6 sm:w-8 h-2.5 sm:h-3 bg-white"
+                : "w-2.5 sm:w-3 h-2.5 sm:h-3 bg-white/40 hover:bg-white/70"
+            }`}
           />
         ))}
       </div>
@@ -208,7 +301,10 @@ const HotlineBanner = () => (
     <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 text-white text-center">
       <div className="flex items-center gap-3">
         <div className="text-left">
-          <p className="text-xs uppercase tracking-widest font-semibold leading-none mb-1" style={{ color: "rgba(255,255,255,0.6)" }}>
+          <p
+            className="text-xs uppercase tracking-widest font-semibold leading-none mb-1"
+            style={{ color: "rgba(255,255,255,0.6)" }}
+          >
             Hotline Tư Vấn – Miễn phí 24/7
           </p>
           <a
@@ -219,8 +315,14 @@ const HotlineBanner = () => (
           </a>
         </div>
       </div>
-      <div className="hidden sm:block w-px h-10" style={{ background: "rgba(255,255,255,0.2)" }} />
-      <div className="hidden sm:flex gap-4 text-sm font-medium flex-wrap justify-center" style={{ color: "rgba(255,255,255,0.7)" }}>
+      <div
+        className="hidden sm:block w-px h-10"
+        style={{ background: "rgba(255,255,255,0.2)" }}
+      />
+      <div
+        className="hidden sm:flex gap-4 text-sm font-medium flex-wrap justify-center"
+        style={{ color: "rgba(255,255,255,0.7)" }}
+      >
         {["Tư vấn chuyên nghiệp", "Đặt lịch lái thử", "Nhận báo giá nhanh"].map(
           (t) => (
             <span key={t} className="flex items-center gap-1">
@@ -254,85 +356,209 @@ const CarModelsSection = ({ cars }) => {
   }).filter(Boolean);
 
   const typeCounts = TYPE_TABS.reduce((acc, t) => {
-    acc[t] = t === "Tất cả" ? allModels.length : allModels.filter((m) => m.type === t).length;
+    acc[t] =
+      t === "Tất cả"
+        ? allModels.length
+        : allModels.filter((m) => m.type === t).length;
     return acc;
   }, {});
 
-  const filtered = activeTab === "Tất cả" ? allModels : allModels.filter((m) => m.type === activeTab);
+  const filtered =
+    activeTab === "Tất cả"
+      ? allModels
+      : allModels.filter((m) => m.type === activeTab);
   const safeIdx = Math.min(activeIdx, Math.max(0, filtered.length - 1));
   const featured = filtered[safeIdx] || null;
-  const detailPath = featured ? (DETAIL_ROUTES[featured.key] || null) : null;
+  const detailPath = featured ? DETAIL_ROUTES[featured.key] || null : null;
 
   return (
     <section style={{ background: "#f8f9fb", padding: "80px 0 60px" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
-
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <p style={{ color: "#dc2626", textTransform: "uppercase", letterSpacing: "0.3em", fontSize: 11, fontWeight: 700, marginBottom: 10 }}>
+          <p
+            style={{
+              color: "#dc2626",
+              textTransform: "uppercase",
+              letterSpacing: "0.3em",
+              fontSize: 11,
+              fontWeight: 700,
+              marginBottom: 10,
+            }}
+          >
             Dòng xe KIA 2026
           </p>
-          <h2 style={{ fontSize: "clamp(1.8rem,4vw,2.8rem)", fontWeight: 900, color: "#111", marginBottom: 14 }}>
+          <h2
+            style={{
+              fontSize: "clamp(1.8rem,4vw,2.8rem)",
+              fontWeight: 900,
+              color: "#111",
+              marginBottom: 14,
+            }}
+          >
             Khám Phá Các Dòng Xe
           </h2>
-          <p style={{ color: "#6b7280", fontSize: 16, maxWidth: 520, margin: "0 auto" }}>
-            Từ SUV mạnh mẽ đến Sedan tinh tế – KIA luôn có lựa chọn hoàn hảo cho bạn
+          <p
+            style={{
+              color: "#6b7280",
+              fontSize: 16,
+              maxWidth: 520,
+              margin: "0 auto",
+            }}
+          >
+            Từ SUV mạnh mẽ đến Sedan tinh tế – KIA luôn có lựa chọn hoàn hảo cho
+            bạn
           </p>
         </div>
 
         {/* Type Filter Tabs */}
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 36 }}>
+        <div
+          style={{
+            display: "flex",
+            gap: 8,
+            flexWrap: "wrap",
+            marginBottom: 36,
+          }}
+        >
           {TYPE_TABS.filter((t) => typeCounts[t] > 0).map((tab) => (
             <button
               key={tab}
-              onClick={() => { setActiveTab(tab); setActiveIdx(0); }}
+              onClick={() => {
+                setActiveTab(tab);
+                setActiveIdx(0);
+              }}
               style={{
-                padding: "9px 20px", borderRadius: 999,
-                border: activeTab === tab ? "2px solid #111" : "2px solid #e5e7eb",
+                padding: "9px 20px",
+                borderRadius: 999,
+                border:
+                  activeTab === tab ? "2px solid #111" : "2px solid #e5e7eb",
                 background: activeTab === tab ? "#111" : "#fff",
                 color: activeTab === tab ? "#fff" : "#374151",
-                fontWeight: 700, fontSize: 14, cursor: "pointer", transition: "all 0.2s",
+                fontWeight: 700,
+                fontSize: 14,
+                cursor: "pointer",
+                transition: "all 0.2s",
               }}
             >
-              {tab}{tab !== "Tất cả" ? ` (${typeCounts[tab]})` : ""}
+              {tab}
+              {tab !== "Tất cả" ? ` (${typeCounts[tab]})` : ""}
             </button>
           ))}
         </div>
 
         {/* Spotlight Panel */}
         {featured && (
-          <div style={{
-            display: "grid", gridTemplateColumns: "1fr 1fr", borderRadius: 20,
-            overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,0.13)", marginBottom: 40, minHeight: 340,
-          }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              borderRadius: 20,
+              overflow: "hidden",
+              boxShadow: "0 20px 60px rgba(0,0,0,0.13)",
+              marginBottom: 40,
+              minHeight: 340,
+            }}
+          >
             {/* Left dark panel */}
-            <div style={{
-              background: "linear-gradient(135deg,#0d1117 0%,#1a2332 100%)",
-              padding: "44px 44px 36px", display: "flex", flexDirection: "column", justifyContent: "space-between",
-            }}>
+            <div
+              style={{
+                background: "linear-gradient(135deg,#0d1117 0%,#1a2332 100%)",
+                padding: "44px 44px 36px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
               <div>
-                <span style={{
-                  display: "inline-block", background: "rgba(255,255,255,0.1)", color: "#9ca3af",
-                  fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase",
-                  padding: "4px 14px", borderRadius: 999, marginBottom: 18,
-                }}>{featured.type}</span>
-                <h3 style={{ color: "#fff", fontSize: "clamp(1.4rem,2.5vw,2.2rem)", fontWeight: 900, marginBottom: 4 }}>
+                <span
+                  style={{
+                    display: "inline-block",
+                    background: "rgba(255,255,255,0.1)",
+                    color: "#9ca3af",
+                    fontSize: 11,
+                    fontWeight: 700,
+                    letterSpacing: "0.15em",
+                    textTransform: "uppercase",
+                    padding: "4px 14px",
+                    borderRadius: 999,
+                    marginBottom: 18,
+                  }}
+                >
+                  {featured.type}
+                </span>
+                <h3
+                  style={{
+                    color: "#fff",
+                    fontSize: "clamp(1.4rem,2.5vw,2.2rem)",
+                    fontWeight: 900,
+                    marginBottom: 4,
+                  }}
+                >
                   {featured.display.toUpperCase()}
                 </h3>
-                <p style={{ color: "#6b7280", fontSize: 13, marginBottom: 24 }}>{featured.badge}</p>
-                <p style={{ color: "#6b7280", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 2 }}>Giá từ</p>
-                <p style={{ color: "#ef4444", fontSize: "1.55rem", fontWeight: 900 }}>{formatPrice(featured.minPrice)}</p>
+                <p style={{ color: "#6b7280", fontSize: 13, marginBottom: 24 }}>
+                  {featured.badge}
+                </p>
+                <p
+                  style={{
+                    color: "#6b7280",
+                    fontSize: 11,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                    marginBottom: 2,
+                  }}
+                >
+                  Giá từ
+                </p>
+                <p
+                  style={{
+                    color: "#ef4444",
+                    fontSize: "1.55rem",
+                    fontWeight: 900,
+                  }}
+                >
+                  {formatPrice(featured.minPrice)}
+                </p>
               </div>
-              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 24 }}>
+              <div
+                style={{
+                  display: "flex",
+                  gap: 10,
+                  flexWrap: "wrap",
+                  marginTop: 24,
+                }}
+              >
                 {detailPath && (
                   <Link to={detailPath} style={{ textDecoration: "none" }}>
-                    <button style={{ background: "#fff", color: "#111", border: "none", padding: "10px 22px", borderRadius: 999, fontWeight: 800, fontSize: 13, cursor: "pointer" }}>
+                    <button
+                      style={{
+                        background: "#fff",
+                        color: "#111",
+                        border: "none",
+                        padding: "10px 22px",
+                        borderRadius: 999,
+                        fontWeight: 800,
+                        fontSize: 13,
+                        cursor: "pointer",
+                      }}
+                    >
                       Xem chi tiết
                     </button>
                   </Link>
                 )}
                 <Link to="/bang-gia" style={{ textDecoration: "none" }}>
-                  <button style={{ background: "transparent", color: "#fff", border: "1.5px solid rgba(255,255,255,0.3)", padding: "10px 22px", borderRadius: 999, fontWeight: 700, fontSize: 13, cursor: "pointer" }}>
+                  <button
+                    style={{
+                      background: "transparent",
+                      color: "#fff",
+                      border: "1.5px solid rgba(255,255,255,0.3)",
+                      padding: "10px 22px",
+                      borderRadius: 999,
+                      fontWeight: 700,
+                      fontSize: 13,
+                      cursor: "pointer",
+                    }}
+                  >
                     Xem bảng giá
                   </button>
                 </Link>
@@ -340,15 +566,55 @@ const CarModelsSection = ({ cars }) => {
             </div>
 
             {/* Right image panel */}
-            <div style={{ background: "#f0f2f5", display: "flex", alignItems: "center", justifyContent: "center", padding: "32px", position: "relative", overflow: "hidden" }}>
-              <div style={{ position: "absolute", width: 320, height: 320, borderRadius: "50%", background: "rgba(220,38,38,0.05)", top: "50%", left: "50%", transform: "translate(-50%,-50%)" }} />
-              <img src={featured.img} alt={featured.display} style={{ maxWidth: "100%", maxHeight: 260, objectFit: "contain", position: "relative", zIndex: 1, filter: "drop-shadow(0 16px 36px rgba(0,0,0,0.15))", transition: "all 0.4s" }} />
+            <div
+              style={{
+                background: "#f0f2f5",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "32px",
+                position: "relative",
+                overflow: "hidden",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  width: 320,
+                  height: 320,
+                  borderRadius: "50%",
+                  background: "rgba(220,38,38,0.05)",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%,-50%)",
+                }}
+              />
+              <img
+                src={featured.img}
+                alt={featured.display}
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: 260,
+                  objectFit: "contain",
+                  position: "relative",
+                  zIndex: 1,
+                  filter: "drop-shadow(0 16px 36px rgba(0,0,0,0.15))",
+                  transition: "all 0.4s",
+                }}
+              />
             </div>
           </div>
         )}
 
         {/* Thumbnail Strip */}
-        <div style={{ display: "grid", gridTemplateColumns: `repeat(auto-fill,minmax(150px,1fr))`, gap: 10, marginBottom: 36 }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: `repeat(auto-fill,minmax(150px,1fr))`,
+            gap: 10,
+            marginBottom: 36,
+          }}
+        >
           {filtered.map((model, i) => {
             const isActive = i === safeIdx;
             return (
@@ -356,15 +622,48 @@ const CarModelsSection = ({ cars }) => {
                 key={model.key}
                 onClick={() => setActiveIdx(i)}
                 style={{
-                  background: "#fff", borderRadius: 14, border: isActive ? "2.5px solid #111" : "2px solid #e5e7eb",
-                  padding: "12px 10px 8px", cursor: "pointer", transition: "all 0.2s",
+                  background: "#fff",
+                  borderRadius: 14,
+                  border: isActive ? "2.5px solid #111" : "2px solid #e5e7eb",
+                  padding: "12px 10px 8px",
+                  cursor: "pointer",
+                  transition: "all 0.2s",
                   boxShadow: isActive ? "0 4px 18px rgba(0,0,0,0.12)" : "none",
-                  transform: isActive ? "translateY(-3px)" : "none", textAlign: "center",
+                  transform: isActive ? "translateY(-3px)" : "none",
+                  textAlign: "center",
                 }}
               >
-                <img src={model.img} alt={model.display} style={{ width: "100%", height: 72, objectFit: "contain", marginBottom: 6 }} />
-                <p style={{ fontSize: 11, fontWeight: 800, color: "#111", margin: 0, lineHeight: 1.3 }}>{model.display}</p>
-                <p style={{ fontSize: 11, color: isActive ? "#dc2626" : "#49494aff", margin: "2px 0 0", fontWeight: 700 }}>{formatPrice(model.minPrice)}</p>
+                <img
+                  src={model.img}
+                  alt={model.display}
+                  style={{
+                    width: "100%",
+                    height: 72,
+                    objectFit: "contain",
+                    marginBottom: 6,
+                  }}
+                />
+                <p
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 800,
+                    color: "#111",
+                    margin: 0,
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {model.display}
+                </p>
+                <p
+                  style={{
+                    fontSize: 11,
+                    color: isActive ? "#dc2626" : "#49494aff",
+                    margin: "2px 0 0",
+                    fontWeight: 700,
+                  }}
+                >
+                  {formatPrice(model.minPrice)}
+                </p>
               </div>
             );
           })}
@@ -374,9 +673,27 @@ const CarModelsSection = ({ cars }) => {
         <div style={{ textAlign: "center" }}>
           <Link to="/bang-gia" style={{ textDecoration: "none" }}>
             <button
-              onMouseEnter={(e) => { e.currentTarget.style.background = "#dc2626"; e.currentTarget.style.transform = "translateY(-2px)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = "#111"; e.currentTarget.style.transform = "none"; }}
-              style={{ background: "#111", color: "#fff", border: "none", padding: "14px 44px", borderRadius: 999, fontWeight: 800, fontSize: 15, cursor: "pointer", letterSpacing: "0.05em", boxShadow: "0 6px 24px rgba(0,0,0,0.15)", transition: "all 0.25s" }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#dc2626";
+                e.currentTarget.style.transform = "translateY(-2px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "#111";
+                e.currentTarget.style.transform = "none";
+              }}
+              style={{
+                background: "#111",
+                color: "#fff",
+                border: "none",
+                padding: "14px 44px",
+                borderRadius: 999,
+                fontWeight: 800,
+                fontSize: 15,
+                cursor: "pointer",
+                letterSpacing: "0.05em",
+                boxShadow: "0 6px 24px rgba(0,0,0,0.15)",
+                transition: "all 0.25s",
+              }}
             >
               Xem tất cả dòng xe →
             </button>
@@ -408,7 +725,10 @@ const WhyKia = () => {
     <section className="bg-white py-16 sm:py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10 sm:mb-12">
-          <p className="uppercase tracking-[0.3em] text-xs font-bold mb-3" style={{ color: "#111" }}>
+          <p
+            className="uppercase tracking-[0.3em] text-xs font-bold mb-3"
+            style={{ color: "#111" }}
+          >
             Tại sao chọn KIA Biên Hòa?
           </p>
           <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4">
@@ -450,16 +770,27 @@ const CtaBanner = () => (
     style={{ background: "#111" }}
   >
     {/* Decorative circles */}
-    <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full blur-3xl" style={{ background: "rgba(255,255,255,0.03)" }} />
-    <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full blur-3xl" style={{ background: "rgba(255,255,255,0.03)" }} />
+    <div
+      className="absolute -top-20 -right-20 w-80 h-80 rounded-full blur-3xl"
+      style={{ background: "rgba(255,255,255,0.03)" }}
+    />
+    <div
+      className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full blur-3xl"
+      style={{ background: "rgba(255,255,255,0.03)" }}
+    />
 
     <div className="relative max-w-3xl mx-auto text-center">
-      <p className="uppercase tracking-[0.3em] text-xs font-bold mb-4" style={{ color: "rgba(255,255,255,0.5)" }}>
+      <p
+        className="uppercase tracking-[0.3em] text-xs font-bold mb-4"
+        style={{ color: "rgba(255,255,255,0.5)" }}
+      >
         Đặt lịch ngay hôm nay
       </p>
       <h2 className="text-4xl sm:text-5xl font-black mb-5 leading-tight">
         Trải Nghiệm Lái Thử <br />
-        <span style={{ color: "rgba(255,255,255,0.85)" }}>Hoàn Toàn Miễn Phí</span>
+        <span style={{ color: "rgba(255,255,255,0.85)" }}>
+          Hoàn Toàn Miễn Phí
+        </span>
       </h2>
       <p className="text-lg mb-8" style={{ color: "rgba(255,255,255,0.6)" }}>
         Đến showroom hoặc gọi hotline – đội ngũ tư vấn của chúng tôi luôn sẵn
@@ -467,8 +798,17 @@ const CtaBanner = () => (
       </p>
 
       {/* Hotline nổi bật */}
-      <div className="mb-8 py-6 px-8 rounded-2xl inline-block" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)" }}>
-        <p className="text-sm font-semibold mb-1 uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.5)" }}>
+      <div
+        className="mb-8 py-6 px-8 rounded-2xl inline-block"
+        style={{
+          background: "rgba(255,255,255,0.06)",
+          border: "1px solid rgba(255,255,255,0.12)",
+        }}
+      >
+        <p
+          className="text-sm font-semibold mb-1 uppercase tracking-widest"
+          style={{ color: "rgba(255,255,255,0.5)" }}
+        >
           Hotline
         </p>
         <a
@@ -477,13 +817,25 @@ const CtaBanner = () => (
           style={{ fontSize: "2.2rem", lineHeight: 1.1, color: "#fff" }}
         >
           0346270010
-          <span className="font-black" style={{ color: "rgba(255,255,255,0.7)" }}> (Gia Hưng)</span>
+          <span
+            className="font-black"
+            style={{ color: "rgba(255,255,255,0.7)" }}
+          >
+            {" "}
+            (Gia Hưng)
+          </span>
         </a>
         <div className="mt-3 space-y-1">
-          <p className="font-black uppercase tracking-wider text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
+          <p
+            className="font-black uppercase tracking-wider text-sm"
+            style={{ color: "rgba(255,255,255,0.6)" }}
+          >
             Liên hệ ngay để nhận báo giá tốt
           </p>
-          <p className="font-black uppercase tracking-wider text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
+          <p
+            className="font-black uppercase tracking-wider text-sm"
+            style={{ color: "rgba(255,255,255,0.6)" }}
+          >
             và những khuyến mãi mới nhất
           </p>
         </div>
@@ -493,7 +845,12 @@ const CtaBanner = () => (
         <a href="tel:0346270010" className="no-underline">
           <button
             className="h-13 sm:h-14 px-8 sm:px-10 border-none font-black rounded-full uppercase tracking-widest shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-            style={{ background: "#fff", color: "#111", fontSize: "clamp(13px, 3vw, 16px)", padding: "14px 36px" }}
+            style={{
+              background: "#fff",
+              color: "#111",
+              fontSize: "clamp(13px, 3vw, 16px)",
+              padding: "14px 36px",
+            }}
           >
             Gọi ngay
           </button>
